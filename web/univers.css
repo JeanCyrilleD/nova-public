@@ -1,0 +1,63 @@
+/* ===== UNIVERS : thèmes complets (couleur + typographie + formes + matière + décor) — chargé en dernier ===== */
+:root{--rad:24px;--rb:12px;--rt:13px;--blur:22px;--hfont:var(--display);--hcase:none;--hls:.01em;--hw:650;--btnsh:0 3px 0 color-mix(in srgb,#000 55%,transparent);--cardx:none;--scene-a:.34;--floor-o:.5;--bandh:0px}
+/* — couche générique : tout lit les variables du thème — */
+.page>.card,.page>.glass,.page>.grid>.card,.thero,#side,#side2,#top{border-radius:var(--rad)!important;backdrop-filter:blur(var(--blur)) saturate(150%)!important;-webkit-backdrop-filter:blur(var(--blur)) saturate(150%)!important}
+.hsubs{border-radius:calc(var(--rad)*.85)!important}.hsub,.stab{border-radius:calc(var(--rad)*.58)!important}
+.btn,.chip,.pill,select,input:not([type=range]):not([type=checkbox]){border-radius:var(--rb)!important}
+.btn{box-shadow:var(--btnsh)}
+.stab .hubtile .apptile,.dpod .dk .apptile,.apptile{border-radius:var(--rt)!important}
+.dpod{border-radius:calc(var(--rad)*.9)!important}
+h1,h2,h3,.thtx h1,.stt b,.hsub b{font-family:var(--hfont)!important;text-transform:var(--hcase);letter-spacing:var(--hls);font-weight:var(--hw)}
+.stt b,.hsub b,.dk small{text-transform:var(--hcase)}
+.page>.card::before,.thero::after{content:"";display:block;height:var(--bandh);margin:calc(var(--bandh)*-1) 0 0;position:relative;top:0;pointer-events:none}
+#aurora i{opacity:var(--scene-a)!important}#floor{opacity:var(--floor-o)!important}
+.page>.card,.page>.glass,.page>.grid>.card{box-shadow:var(--gsh),var(--cardx)!important}
+/* — 1. AURORE BORÉALE : indigo nuit, vert menthe + violet, verre profond — */
+:root[data-theme="aurore"]{color-scheme:dark;--bg:#060a1c;--bg2:#040716;--surface:#0f1637;--surface2:#16204b;--surface3:#1f2b62;--line:#26336e;--line2:#4a5fc4;--txt:#eef2ff;--txt2:#b9c5f2;--txt3:#8493c8;--accent:#5cf2c8;--accent-ink:#04231b;--gold:#b794ff;--user:#17215a;--code:#050a1e;
+ --font:"SF Pro Text","Avenir Next",-apple-system,sans-serif;--display:"SF Pro Display","Avenir Next",-apple-system,sans-serif;--r1:12px;--r2:16px;--r3:24px;--glow:0 0 34px rgba(92,242,200,.28);--hero:linear-gradient(135deg,#142060,#0a1236);
+ --canvas:radial-gradient(ellipse 70% 45% at 20% -10%,rgba(92,242,200,.22),transparent 70%),radial-gradient(ellipse 60% 40% at 100% 20%,rgba(183,148,255,.2),transparent 70%);--rad:28px;--rb:14px;--rt:30%;--blur:30px;--hw:600;--hls:-.01em;--scene-a:.5;--floor-o:.25}
+:root[data-theme="aurore"] #aurora i:nth-child(1){background:#2de3b4}:root[data-theme="aurore"] #aurora i:nth-child(2){background:#8f6bff;opacity:.4!important}:root[data-theme="aurore"] #aurora i:nth-child(3){background:#2a6bff}
+/* — 2. IMPÉRIAL OR : noir bordeaux, filets d'or, capitales Didot — */
+:root[data-theme="nova-imperial"]{--font:"Avenir Next","Aptos",-apple-system,sans-serif;--display:"Didot","Bodoni 72","Playfair Display","Iowan Old Style",Georgia,serif;--rad:10px;--rb:6px;--rt:22%;--blur:12px;--hcase:uppercase;--hls:.14em;--hw:500;--btnsh:none;--cardx:0 0 0 1px rgba(212,175,55,.38);--bandh:0px;--scene-a:.28;--floor-o:.12}
+:root[data-theme="nova-imperial"] .stab{border:1px solid rgba(212,175,55,.35)!important}
+:root[data-theme="nova-imperial"] .btn.primary{background:linear-gradient(180deg,#e8c566,#b8902a);color:#2a0b11;border-color:#d4af37}
+/* — 3. NÉON TOKYO : mono, angles vifs, néons magenta/cyan, grille — */
+:root[data-theme="tokyo"]{color-scheme:dark;--bg:#04020d;--bg2:#03010a;--surface:#0c0720;--surface2:#140b30;--surface3:#1e1042;--line:#2a1559;--line2:#ff2bd6;--txt:#f4eeff;--txt2:#c8b8f5;--txt3:#8f7cc4;--accent:#ff2bd6;--accent-ink:#1a0017;--gold:#19f0ff;--user:#1b0c3d;--code:#05020f;
+ --font:"SF Mono","Menlo","Monaco",monospace;--display:"SF Mono","Menlo",monospace;--r1:3px;--r2:5px;--r3:8px;--glow:0 0 26px rgba(255,43,214,.45);--hero:linear-gradient(135deg,#240a4a,#0b0420);
+ --canvas:radial-gradient(ellipse 60% 40% at 50% -10%,rgba(255,43,214,.25),transparent 70%),radial-gradient(ellipse 50% 40% at 100% 100%,rgba(25,240,255,.18),transparent 70%);--rad:6px;--rb:3px;--rt:8px;--blur:8px;--hcase:uppercase;--hls:.12em;--hw:700;--btnsh:0 0 14px rgba(255,43,214,.45);--cardx:0 0 0 1px rgba(255,43,214,.55),0 0 22px rgba(255,43,214,.18);--scene-a:.4;--floor-o:.95}
+:root[data-theme="tokyo"] #aurora i:nth-child(1){background:#ff2bd6}:root[data-theme="tokyo"] #aurora i:nth-child(2){background:#19f0ff}:root[data-theme="tokyo"] #aurora i:nth-child(3){background:#6a2bff}
+:root[data-theme="tokyo"] body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+:root[data-theme="tokyo"] .stab.on,:root[data-theme="tokyo"] .hsub.on{box-shadow:0 0 0 1px #19f0ff,0 0 18px rgba(25,240,255,.55)!important}
+/* — 4. PAPIER & ENCRE : éditorial clair, empattements, ombres plates — */
+:root[data-theme="papier"]{color-scheme:light;--bg:#f2ece0;--bg2:#e9e1d0;--surface:#fffcf5;--surface2:#f6efe0;--surface3:#ebe1cb;--line:#d8ccb0;--line2:#1f1a14;--txt:#1f1a14;--txt2:#4a4034;--txt3:#7a6e5d;--accent:#b4451f;--accent-ink:#fff;--gold:#8a6d1f;--user:#efe3c9;--code:#f3ead7;
+ --font:"Charter","Iowan Old Style","Georgia",serif;--display:"Baskerville","Iowan Old Style","Georgia",serif;--r1:3px;--r2:5px;--r3:8px;--glow:none;--hero:#fffcf5;--canvas:none;--rad:5px;--rb:3px;--rt:18%;--blur:0px;--hw:700;--hls:0;--btnsh:3px 3px 0 rgba(31,26,20,.85);--cardx:3px 4px 0 rgba(31,26,20,.16);--scene-a:0;--floor-o:0;
+ --gl:#fffcf5;--gl2:#f6efe0;--glb:#1f1a14;--gsh:0 0 0 0 transparent}
+:root[data-theme="papier"] body{background:repeating-linear-gradient(0deg,rgba(120,90,40,.025) 0 1px,transparent 1px 4px),var(--bg)}
+:root[data-theme="papier"] .page>.card,:root[data-theme="papier"] #side,:root[data-theme="papier"] #side2,:root[data-theme="papier"] #top,:root[data-theme="papier"] .thero,:root[data-theme="papier"] .hsubs{border:1.5px solid #1f1a14!important}
+:root[data-theme="papier"] .stab,:root[data-theme="papier"] .hsub{border:1.2px solid #1f1a14!important;box-shadow:2px 2px 0 rgba(31,26,20,.8)!important}
+:root[data-theme="papier"] .stab.on,:root[data-theme="papier"] .hsub.on{background:var(--accent)!important;color:#fff!important}
+:root[data-theme="papier"] .stab.on *,:root[data-theme="papier"] .hsub.on *{color:#fff!important}
+:root[data-theme="papier"] .dpod{background:#fffcf5!important;border:1.5px solid #1f1a14!important}:root[data-theme="papier"] .dk small,:root[data-theme="papier"] .dpl{color:#1f1a14!important;text-shadow:none!important}
+/* — 5. OCÉAN PROFOND : bleu abysse, aqua, formes très rondes — */
+:root[data-theme="ocean"]{color-scheme:dark;--bg:#021320;--bg2:#010d17;--surface:#06263a;--surface2:#0a3550;--surface3:#0f4666;--line:#145070;--line2:#2fb8d6;--txt:#e9fbff;--txt2:#a9dbe8;--txt3:#6fa9bd;--accent:#2fd8e6;--accent-ink:#00262b;--gold:#7cf0c9;--user:#0b3a55;--code:#01101a;
+ --font:"Avenir Next","Optima",-apple-system,sans-serif;--display:"Optima","Avenir Next",sans-serif;--r1:14px;--r2:20px;--r3:30px;--glow:0 0 40px rgba(47,216,230,.3);--hero:linear-gradient(135deg,#0a4560,#041c2b);--canvas:radial-gradient(ellipse 80% 50% at 50% 110%,rgba(47,216,230,.2),transparent 70%);--rad:34px;--rb:999px;--rt:50%;--blur:34px;--hw:500;--hls:.02em;--scene-a:.55;--floor-o:.1}
+:root[data-theme="ocean"] #aurora i:nth-child(1){background:#0aa5c9}:root[data-theme="ocean"] #aurora i:nth-child(2){background:#2fd8a8}:root[data-theme="ocean"] #aurora i:nth-child(3){background:#1d4fd6}
+/* — 6. SAHEL DORÉ : sable, terre cuite, indigo ; bandeau bogolan, capitales — */
+:root[data-theme="sahel"]{color-scheme:light;--bg:#f1dfb9;--bg2:#e8d1a1;--surface:#fff5dc;--surface2:#f8e6bd;--surface3:#efd49b;--line:#d9b872;--line2:#7a3b12;--txt:#2b1708;--txt2:#5a3a1c;--txt3:#8a6a3f;--accent:#c2410c;--accent-ink:#fff;--gold:#d99a00;--user:#f3dba5;--code:#f6e6c3;
+ --font:"Gill Sans","Avenir Next",sans-serif;--display:"Rockwell","Hoefler Text","Georgia",serif;--r1:8px;--r2:12px;--r3:16px;--glow:none;--hero:linear-gradient(135deg,#fff0c8,#f3d58f);--canvas:radial-gradient(ellipse 70% 40% at 50% -10%,rgba(194,65,12,.18),transparent 70%);--rad:14px;--rb:8px;--rt:20%;--blur:6px;--hcase:uppercase;--hls:.08em;--hw:700;--btnsh:0 3px 0 rgba(122,59,18,.6);--cardx:0 0 0 1px rgba(122,59,18,.35);--scene-a:.18;--floor-o:0;--bandh:7px;--gl:rgba(255,245,220,.88);--gl2:rgba(248,230,189,.9);--glb:#9a5a22;--gsh:0 10px 22px -10px rgba(122,59,18,.45)}
+:root[data-theme="sahel"] #aurora i:nth-child(1){background:#e2761b}:root[data-theme="sahel"] #aurora i:nth-child(2){background:#1e3a8a}:root[data-theme="sahel"] #aurora i:nth-child(3){background:#d99a00}
+:root[data-theme="sahel"] .page>.card::before,:root[data-theme="sahel"] .thero::after{background:linear-gradient(135deg,#2b1708 25%,transparent 25%) -6px 0,linear-gradient(225deg,#2b1708 25%,transparent 25%) -6px 0,linear-gradient(315deg,#c2410c 25%,transparent 25%),linear-gradient(45deg,#c2410c 25%,transparent 25%);background-size:12px 7px;background-color:#f0d58f;border-radius:var(--rad) var(--rad) 0 0;margin:-1px -1px 8px;height:7px}
+:root[data-theme="sahel"] .dpod{background:rgba(255,245,220,.92)!important;border:1.5px solid #9a5a22!important}:root[data-theme="sahel"] .dk small,:root[data-theme="sahel"] .dpl{color:#2b1708!important;text-shadow:none!important}
+/* — 7. TITANE STUDIO : graphite mat, bleu électrique, dense et net — */
+:root[data-theme="titane"]{color-scheme:dark;--bg:#0d0e11;--bg2:#08090b;--surface:#16181d;--surface2:#1d2026;--surface3:#272b33;--line:#2b2f38;--line2:#3d4350;--txt:#eceef2;--txt2:#adb3bf;--txt3:#7d8493;--accent:#4f8cff;--accent-ink:#fff;--gold:#9db8ff;--user:#1c2230;--code:#0a0b0e;
+ --font:"SF Pro Text","Inter",-apple-system,sans-serif;--display:"SF Pro Display","Inter",-apple-system,sans-serif;--r1:6px;--r2:9px;--r3:12px;--glow:none;--hero:linear-gradient(135deg,#1d2026,#121418);--canvas:none;--rad:12px;--rb:8px;--rt:24%;--blur:0px;--hw:650;--hls:-.015em;--btnsh:none;--cardx:none;--scene-a:.07;--floor-o:0;--gl:#16181d;--gl2:#1d2026;--glb:#2b2f38;--gsh:0 1px 0 rgba(255,255,255,.04) inset,0 10px 24px -14px rgba(0,0,0,.8)}
+:root[data-theme="titane"] .stab.on,:root[data-theme="titane"] .hsub.on{box-shadow:inset 3px 0 0 var(--accent)!important}
+/* — 8. VERGER ZEN : sauge, crème, très arrondi, ombres douces — */
+:root[data-theme="zen"]{color-scheme:light;--bg:#e9f0e3;--bg2:#dfe9d6;--surface:#fbfdf8;--surface2:#f0f6ea;--surface3:#e2ecd8;--line:#cfdcc3;--line2:#9bb88a;--txt:#1d2a1f;--txt2:#3f5543;--txt3:#6f8873;--accent:#3d8f5a;--accent-ink:#fff;--gold:#c9a227;--user:#e4f0da;--code:#eef5e8;
+ --font:"Avenir Next","Avenir",sans-serif;--display:"Avenir Next","Optima",sans-serif;--r1:14px;--r2:20px;--r3:28px;--glow:none;--hero:linear-gradient(135deg,#f6fbf1,#dcebd0);--canvas:radial-gradient(ellipse 70% 40% at 20% -10%,rgba(61,143,90,.16),transparent 70%);--rad:34px;--rb:999px;--rt:36%;--blur:18px;--hw:600;--hls:0;--btnsh:0 6px 14px -6px rgba(61,143,90,.55);--cardx:none;--scene-a:.2;--floor-o:0;--gl:rgba(251,253,248,.78);--gl2:rgba(240,246,234,.85);--glb:rgba(155,184,138,.55);--gsh:0 18px 40px -22px rgba(40,80,50,.45)}
+:root[data-theme="zen"] #aurora i:nth-child(1){background:#7fcf95}:root[data-theme="zen"] #aurora i:nth-child(2){background:#f1d78a}:root[data-theme="zen"] #aurora i:nth-child(3){background:#9bc7e8}
+/* thèmes clairs : barre du bas lisible */
+:root[data-theme="zen"] .dpod{background:rgba(251,253,248,.85)!important;border:1px solid rgba(155,184,138,.6)!important}:root[data-theme="zen"] .dk small,:root[data-theme="zen"] .dpl{color:#1d2a1f!important;text-shadow:none!important}
+.dk small,.dpl{letter-spacing:calc(var(--hls)*.25)!important}
+:root[data-theme="tokyo"] .dk small,:root[data-theme="nova-imperial"] .dk small,:root[data-theme="sahel"] .dk small{font-size:9px!important;letter-spacing:.02em!important}
+.stt b{letter-spacing:calc(var(--hls)*.6)}
