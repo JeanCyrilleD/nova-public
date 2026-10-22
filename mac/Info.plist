@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>CFBundleName</key><string>Nova</string>
+<key>CFBundleDisplayName</key><string>Nova</string>
+<key>NSHumanReadableCopyright</key><string>Nova — assistant personnel open source</string>
+<key>CFBundleIdentifier</key><string>com.ahadi.nova</string>
+<key>CFBundleExecutable</key><string>Nova</string>
+<key>CFBundleIconFile</key><string>Nova</string>
+<key>CFBundlePackageType</key><string>APPL</string>
+<key>CFBundleShortVersionString</key><string>1.0.0</string>
+<key>CFBundleVersion</key><string>1</string>
+<key>LSMinimumSystemVersion</key><string>13.0</string>
+<key>NSHighResolutionCapable</key><true/>
+<key>NSMicrophoneUsageDescription</key><string>Nova écoute ta voix pour la conversation. Rien n'est enregistré sur disque.</string>
+<key>NSAppleEventsUsageDescription</key><string>Nova lit ton agenda, tes mails non lus et tes rappels pour préparer tes briefs. Elle n'envoie jamais rien sans ton accord.</string>
+<key>NSAppTransportSecurity</key><dict><key>NSAllowsLocalNetworking</key><true/><key>NSAllowsArbitraryLoadsInWebContent</key><true/></dict>
+</dict></plist>
