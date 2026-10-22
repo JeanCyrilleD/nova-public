@@ -1,0 +1,27 @@
+<!doctype html><html lang="fr" data-theme="nova-imperial"><head><meta charset="utf-8"><title>Nova</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="themes.css"><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="compagnon.css"><link rel="stylesheet" href="univers.css"><script>
+// Garde-fou de démarrage : si l'interface ne s'affiche pas en 30 s, on montre la vraie erreur au lieu d'un écran noir.
+(function(){var E=[];function add(t){E.push(t);show()}
+window.addEventListener("error",function(e){add("Erreur : "+e.message+" ("+(e.filename||"").split("/").pop()+":"+e.lineno+")")});
+window.addEventListener("unhandledrejection",function(e){add("Promesse rejetée : "+(e.reason&&(e.reason.message||e.reason)))});
+function show(){var b=document.getElementById("bootguard");if(!b)return;b.style.display="block";b.querySelector("pre").textContent=E.join("\n")||"(aucune erreur JavaScript capturée)"}
+window.__novaBooted=function(){var b=document.getElementById("bootguard");if(b)b.remove()};
+setTimeout(function(){if(document.getElementById("bootguard")){show();diag();}},30000);
+function diag(){var pre=document.querySelector("#bootguard pre");function out(t){pre.textContent+="\n"+t}
+out("étape atteinte : "+(window.__stage||"aucune (app.js pas exécuté)"));
+var t0=Date.now();
+["/api/state","/app.js","/core.js","/avatar.js","/tabs/web.js","/native.js"].forEach(function(u){var t=Date.now();fetch(u).then(function(r){out("fetch "+u+" → "+r.status+" ("+(Date.now()-t)+" ms)")}).catch(function(e){out("fetch "+u+" ÉCHEC : "+e)})});
+try{import("./core.js").then(function(){out("import core.js OK")},function(e){out("import core.js KO : "+e)});
+import("./icons.js").then(function(){out("import icons.js OK")},function(e){out("import icons.js KO : "+e)});
+import("./avatar.js").then(function(){out("import avatar.js OK")},function(e){out("import avatar.js KO : "+e)});
+import("./native.js").then(function(){out("import native.js OK")},function(e){out("import native.js KO : "+e)});
+import("./tabs/vie.js").then(function(){out("import tabs/vie.js OK")},function(e){out("import tabs/vie.js KO : "+e)});}catch(e){out("import dynamique impossible : "+e)}}})();
+</script><link rel="modulepreload" href="compagnon.js"><link rel="modulepreload" href="core.js"><link rel="modulepreload" href="icons.js"><link rel="modulepreload" href="appicons.js"><link rel="modulepreload" href="assistant.js"><link rel="modulepreload" href="avatars.js"><link rel="modulepreload" href="tabs/converser.js"><link rel="modulepreload" href="tabs/temps.js"><link rel="modulepreload" href="tabs/savoir.js"><link rel="modulepreload" href="tabs/agents.js"><link rel="modulepreload" href="tabs/systeme.js"><link rel="modulepreload" href="tabs/apparence.js"><link rel="modulepreload" href="tabs/accueil.js"><link rel="modulepreload" href="tabs/web.js"><link rel="modulepreload" href="tabs/medias.js"><link rel="modulepreload" href="tabs/vie.js"><link rel="modulepreload" href="tabs/ame.js"><link rel="modulepreload" href="native.js"><link rel="modulepreload" href="layout.js"><link rel="modulepreload" href="dots-live.js"><link rel="modulepreload" href="webmail.js"><link rel="modulepreload" href="vivant.js"><link rel="modulepreload" href="avatar.js"><link rel="modulepreload" href="dot3d.js"><link rel="modulepreload" href="plush.js"><link rel="modulepreload" href="vendor/three.module.js"><link rel="modulepreload" href="app.js"></head>
+<body><div id="bootguard" style="display:none;position:fixed;inset:0;z-index:99999;background:#fff;color:#111;font:14px -apple-system,sans-serif;padding:28px;overflow:auto"><h2 style="margin:0 0 8px">Nova n'a pas pu afficher son interface</h2><p>Voici l'erreur exacte (capture-la ou envoie-la telle quelle) :</p><pre style="white-space:pre-wrap;background:#f3f3f3;padding:12px;border-radius:8px"></pre></div><div id="aurora"><i></i><i></i><i></i></div><div id="floor"></div>
+<a id="skip" class="skiplink" href="#/" aria-label="Aller au contenu">Aller au contenu</a><div id="srlive" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+<div id="app"><header id="top" role="banner"></header><nav id="side" aria-label="Onglets (gauche)"></nav><nav id="side2" aria-label="Onglets (droite)"></nav><nav id="ribbon" aria-hidden="true"></nav><main id="view" tabindex="-1" aria-label="Contenu"></main></div>
+<nav id="dock" aria-label="Groupes"></nav>
+<aside id="orb" aria-label="Assistant flottant"><div class="bub"></div><div class="shell"><div class="host"></div><div class="ringx"></div><div class="lab"></div></div><div class="ob"></div></aside>
+<button id="videx" type="button" aria-label="Quitter le Vide (Échap)">Quitter le Vide · Échap</button>
+<div id="pal" role="dialog" aria-modal="true" aria-label="Recherche globale et commandes"><div class="box glass"><input role="combobox" aria-expanded="false" aria-controls="palist" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Rechercher partout : onglets, Dots, mémoire, brouillons, actions, documents…  (↑ ↓ ↵ Échap)" aria-label="Recherche globale et commandes"><div class="list" id="palist" role="listbox" aria-label="Résultats"></div></div></div>
+<script>import("./app.js").catch(function(e){window.dispatchEvent(new ErrorEvent("error",{message:"Import app.js : "+(e&&(e.message||e))+(e&&e.stack?" | "+String(e.stack).slice(0,300):"")}))})</script><script src="confirm.js"></script></body></html>
