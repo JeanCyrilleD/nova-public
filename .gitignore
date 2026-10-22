@@ -1,0 +1,12 @@
+.build/
+build/
+*.log
+_x*/
+_tmp*/
+*.tgz
+.DS_Store
+tests/__pycache__/
+_*
+diag*.json
+web/docs/
+releves/
