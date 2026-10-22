@@ -1,0 +1,75 @@
+/* 4 thèmes + 3 modes d'accessibilité. Un bloc par thème, mêmes variables partout : aucun !important, aucune liste d'ids dans le reste du CSS. */
+:root[data-theme="nova-imperial"] {
+  color-scheme: dark; --bg:#0a0103; --bg2:#070002; --surface:#180509; --surface2:#220a0f; --surface3:#2e0f16; --line:#3b1017; --line2:#6d1c24;
+  --txt:#f5f3ee; --txt2:#c9c3b8; --txt3:#9a9084; --accent:#D93226; --accent-ink:#fff; --gold:#d4af37; --user:#2a0d13; --code:#0c0204;
+  --font:"Aptos",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --display:"Iowan Old Style","Palatino Linotype",Georgia,serif; --r1:8px; --r2:12px; --r3:18px;
+  --glow:0 0 30px rgba(217,50,38,.25); --hero:linear-gradient(135deg,#2a0b11,#170509);
+  --canvas:radial-gradient(ellipse 70% 40% at 50% -10%,rgba(217,50,38,.22),transparent 70%),radial-gradient(ellipse 50% 30% at 100% 100%,rgba(212,175,55,.10),transparent 70%);
+}
+:root[data-theme="cyber"] {
+  color-scheme: dark; --bg:#030610; --bg2:#02040b; --surface:#060c1c; --surface2:#0a1530; --surface3:#0f1e44; --line:#0b3446; --line2:#0f7f95;
+  --txt:#e6f7ff; --txt2:#8bc8e8; --txt3:#6a9db8; --accent:#00f0ff; --accent-ink:#021018; --gold:#ff007f; --user:#0b1a38; --code:#030812;
+  --font:ui-monospace,"SF Mono",Menlo,monospace; --display:ui-monospace,"SF Mono",Menlo,monospace; --r1:2px; --r2:4px; --r3:6px;
+  --glow:0 0 24px rgba(0,240,255,.35); --hero:linear-gradient(135deg,#0b1838,#050b1c);
+  --canvas:linear-gradient(rgba(0,240,255,.05) 1px,transparent 1px) 0 0/34px 34px,linear-gradient(90deg,rgba(0,240,255,.05) 1px,transparent 1px) 0 0/34px 34px,radial-gradient(ellipse 60% 40% at 80% 0,rgba(121,40,202,.28),transparent 70%);
+}
+:root[data-theme="monolith"] {
+  color-scheme: dark; --bg:#0d0e11; --bg2:#08090b; --surface:#141519; --surface2:#1b1c21; --surface3:#25272d; --line:#2a2c33; --line2:#4b4e59;
+  --txt:#f3f4f6; --txt2:#a6adba; --txt3:#8087a2; --accent:#e5e7eb; --accent-ink:#0d0e11; --gold:#60a5fa; --user:#20222a; --code:#0a0b0e;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif; --display:"SF Pro Display",-apple-system,sans-serif; --r1:2px; --r2:3px; --r3:4px;
+  --glow:0 0 24px rgba(255,255,255,.12); --hero:linear-gradient(180deg,#23252c,#16171c);
+  --canvas:radial-gradient(ellipse 80% 40% at 50% -10%,rgba(255,255,255,.07),transparent 70%),repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px);
+}
+:root[data-theme="zenith"] {
+  color-scheme: dark; --bg:#0c0901; --bg2:#080600; --surface:#161003; --surface2:#1f1705; --surface3:#2b200a; --line:#3a2f0e; --line2:#7d6710;
+  --txt:#fff8dc; --txt2:#d4c28a; --txt3:#b9a874; --accent:#ffd700; --accent-ink:#1a1200; --gold:#ffae00; --user:#261c08; --code:#0a0701;
+  --font:"Avenir Next","Trebuchet MS",-apple-system,sans-serif; --display:"Iowan Old Style","Palatino Linotype",Georgia,serif; --r1:12px; --r2:18px; --r3:26px;
+  --glow:0 0 34px rgba(255,215,0,.28); --hero:linear-gradient(135deg,#33250b,#1a1204);
+  --canvas:radial-gradient(ellipse 60% 38% at 50% -8%,rgba(255,215,0,.26),transparent 70%),radial-gradient(ellipse 50% 30% at 90% 105%,rgba(255,174,0,.14),transparent 70%);
+}
+/* Accessibilité */
+:root[data-theme="clair"] { color-scheme: light; --bg:#f6f4ef; --bg2:#ece9e3; --surface:#fff; --surface2:#f1eee8; --surface3:#e6e2da; --line:#d6d1c6; --line2:#a8a193;
+  --txt:#1e1e1e; --txt2:#4a4740; --txt3:#6b665c; --accent:#C00000; --accent-ink:#fff; --gold:#8a6d00; --user:#efe8dc; --code:#f1eee8;
+  --font:-apple-system,BlinkMacSystemFont,sans-serif; --display:-apple-system,sans-serif; --r1:8px; --r2:12px; --r3:16px; --glow:0 2px 12px rgba(0,0,0,.08); --hero:linear-gradient(135deg,#fff,#efe9dd); --canvas:none; }
+:root[data-theme="nuit"] { color-scheme: dark; --bg:#14161b; --bg2:#101216; --surface:#1b1e25; --surface2:#222630; --surface3:#2b303c; --line:#2f3441; --line2:#4a5163;
+  --txt:#e7e5df; --txt2:#b4b1a8; --txt3:#8c8a82; --accent:#f0b45a; --accent-ink:#1a1200; --gold:#f0b45a; --user:#262b38; --code:#10131a;
+  --font:-apple-system,BlinkMacSystemFont,sans-serif; --display:-apple-system,sans-serif; --r1:8px; --r2:12px; --r3:16px; --glow:none; --hero:linear-gradient(135deg,#232733,#1a1d26); --canvas:none; }
+:root[data-theme="contraste"] { color-scheme: dark; --bg:#000; --bg2:#000; --surface:#0a0a0a; --surface2:#141414; --surface3:#1f1f1f; --line:#8a8a8a; --line2:#fff;
+  --txt:#fff; --txt2:#f0f0f0; --txt3:#d0d0d0; --accent:#ffe600; --accent-ink:#000; --gold:#ffe600; --user:#1a1a1a; --code:#000;
+  --font:-apple-system,BlinkMacSystemFont,sans-serif; --display:-apple-system,sans-serif; --r1:6px; --r2:8px; --r3:10px; --glow:none; --hero:#111; --canvas:none; }
+/* Identité propre à chaque thème (formes, titres, boutons) */
+:root[data-theme="nova-imperial"] .brand b{background:linear-gradient(135deg,#d93226,#d4af37);-webkit-background-clip:text;color:transparent}
+:root[data-theme="nova-imperial"] h1,:root[data-theme="nova-imperial"] h2{font-family:var(--display)}
+:root[data-theme="nova-imperial"] .card{border-top:2px solid var(--gold)}
+:root[data-theme="cyber"] h1,:root[data-theme="cyber"] h2{text-transform:uppercase;letter-spacing:.12em;text-shadow:0 0 12px rgba(0,240,255,.5)}
+:root[data-theme="cyber"] .card{box-shadow:inset 0 0 22px rgba(0,240,255,.06),0 0 0 1px rgba(0,240,255,.15)}
+:root[data-theme="monolith"] h1,:root[data-theme="monolith"] h2{text-transform:uppercase;letter-spacing:.14em}
+:root[data-theme="monolith"] .card{border-top-color:rgba(255,255,255,.3)}
+:root[data-theme="zenith"] h1,:root[data-theme="zenith"] h2{font-family:var(--display);color:#ffe45e;text-shadow:0 0 16px rgba(255,215,0,.3)}
+:root[data-theme="zenith"] .btn,:root[data-theme="zenith"] .chip{border-radius:999px}
+:root[data-theme="zenith"] .btn.primary{background:linear-gradient(135deg,#ffe35a,#ffae00)}
+
+/* V16 — thèmes professionnels, jour et nuit. Températures de couleur : froid et net le jour, ambre au crépuscule, très chaud et sombre la nuit (peu de bleu). */
+:root[data-theme="bureau"] { color-scheme: light; --bg:#f3f5f8; --bg2:#e9edf2; --surface:#ffffff; --surface2:#f1f4f8; --surface3:#e3e8ef; --line:#d5dce6; --line2:#9fb0c4;
+  --txt:#14202e; --txt2:#3d4c60; --txt3:#62738a; --accent:#1d5fd1; --accent-ink:#fff; --gold:#b4791f; --user:#e4edfb; --code:#eef2f7;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif; --display:-apple-system,"SF Pro Display",sans-serif; --r1:8px; --r2:12px; --r3:16px; --glow:0 2px 14px rgba(20,40,80,.10); --hero:linear-gradient(135deg,#ffffff,#e8effa); --canvas:none; }
+:root[data-theme="aube"] { color-scheme: light; --bg:#faf5ec; --bg2:#f2eadb; --surface:#fffdf8; --surface2:#f7efe1; --surface3:#eddfc8; --line:#e2d3b9; --line2:#bfa57c;
+  --txt:#2b2014; --txt2:#5b4630; --txt3:#85704f; --accent:#c4531f; --accent-ink:#fff; --gold:#a8751a; --user:#f6e6cf; --code:#f5ecdc;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif; --display:"Iowan Old Style","Palatino Linotype",Georgia,serif; --r1:8px; --r2:12px; --r3:18px; --glow:0 2px 14px rgba(120,70,20,.12); --hero:linear-gradient(135deg,#fffaf0,#f3e3c6); --canvas:radial-gradient(ellipse 70% 40% at 50% -10%,rgba(232,150,60,.12),transparent 70%); }
+:root[data-theme="ardoise"] { color-scheme: dark; --bg:#12171e; --bg2:#0e1318; --surface:#19212b; --surface2:#202a36; --surface3:#2a3644; --line:#2c3846; --line2:#4a5c70;
+  --txt:#e8edf3; --txt2:#aab6c4; --txt3:#7f8d9e; --accent:#4db6ac; --accent-ink:#06201d; --gold:#e0b45c; --user:#223140; --code:#0e1318;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif; --display:-apple-system,"SF Pro Display",sans-serif; --r1:8px; --r2:12px; --r3:16px; --glow:none; --hero:linear-gradient(135deg,#1f2a37,#161d26); --canvas:none; }
+:root[data-theme="crepuscule"] { color-scheme: dark; --bg:#1c140f; --bg2:#150f0b; --surface:#261a13; --surface2:#31221a; --surface3:#3f2d21; --line:#4a3425; --line2:#7a5a3e;
+  --txt:#f4e6d4; --txt2:#cdb497; --txt3:#a08568; --accent:#e8a24a; --accent-ink:#2a1500; --gold:#f0c070; --user:#38261a; --code:#150f0b;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif; --display:"Iowan Old Style","Palatino Linotype",Georgia,serif; --r1:8px; --r2:12px; --r3:18px; --glow:0 0 26px rgba(232,162,74,.16); --hero:linear-gradient(135deg,#3a2718,#22160e);
+  --canvas:radial-gradient(ellipse 80% 40% at 50% -10%,rgba(232,130,50,.20),transparent 70%),radial-gradient(ellipse 50% 30% at 0 100%,rgba(190,80,40,.12),transparent 70%); }
+:root[data-theme="braise"] { color-scheme: dark; --bg:#120b08; --bg2:#0c0705; --surface:#1a100b; --surface2:#23160f; --surface3:#2e1d14; --line:#3a2518; --line2:#62402a;
+  --txt:#e6d0b8; --txt2:#b89a7e; --txt3:#8c7258; --accent:#d9783a; --accent-ink:#1a0a00; --gold:#c9964a; --user:#2a1a11; --code:#0c0705;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif; --display:-apple-system,"SF Pro Display",sans-serif; --r1:8px; --r2:12px; --r3:16px; --glow:none; --hero:linear-gradient(135deg,#2a1a11,#170e09); --canvas:none; }
+
+/* Accessibilité (préférences Réglages → Affichage & confort) : contraste renforcé, focus très visible. Variables surchargées sur <body>. */
+body.hc { --txt2: var(--txt); --txt3: var(--txt); --line: var(--line2); }
+body.hc :is(.card, .tile, .glass, input, select, textarea, .btn) { border-color: var(--line2); }
+body.focus-strong :focus-visible, body.hc :focus-visible { outline: 4px solid var(--accent); outline-offset: 3px; box-shadow: 0 0 0 7px color-mix(in srgb, var(--bg) 85%, transparent); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.theme-preview { display: grid; gap: 8px; padding: 14px; border-radius: var(--r2, 12px); border: 1px solid var(--line2); background: var(--surface2); }
