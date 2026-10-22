@@ -1,0 +1,43 @@
+<!doctype html><html lang="fr" data-theme="nova-imperial"><head><meta charset="utf-8"><title>Nova</title><link rel="stylesheet" href="themes.css">
+<style>
+html,body{margin:0;height:100%;background:transparent!important;overflow:hidden;font:13px/1.4 var(--font);color:var(--txt);user-select:none;-webkit-user-select:none}
+#wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center}
+#bubble{margin:8px 10px 0;max-width:calc(100% - 20px);min-height:0;max-height:96px;overflow:hidden;background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line2);border-radius:var(--r3);padding:8px 12px;box-shadow:var(--glow);opacity:0;transform:translateY(6px);transition:.25s;backdrop-filter:blur(14px);position:relative;-webkit-user-select:text}
+#bubble.show{opacity:1;transform:none}#bubble.user{border-color:var(--accent);color:var(--txt2);font-style:italic}
+#bubble::after{content:"";position:absolute;left:50%;bottom:-7px;width:12px;height:12px;background:inherit;border:inherit;border-top:0;border-left:0;transform:translateX(-50%) rotate(45deg)}
+#host{flex:1;width:100%;min-height:0}
+#bar{display:flex;gap:8px;align-items:center;margin:0 10px 10px;padding:5px 6px;border-radius:999px;background:color-mix(in srgb,var(--surface) 90%,transparent);border:1px solid var(--line2);backdrop-filter:blur(14px);width:calc(100% - 20px)}
+#bar input{flex:1;background:transparent;border:0;color:var(--txt);outline:none;min-width:0;padding:4px 6px;font:inherit;-webkit-user-select:text}
+button{border:0;cursor:pointer;color:var(--txt)}
+#mic{width:36px;height:36px;border-radius:50%;background:var(--surface3);font-size:17px;flex:none}#mic.on{background:var(--accent);color:var(--accent-ink);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 30%,transparent)}
+.sm{width:30px;height:30px;border-radius:50%;background:transparent;font-size:15px;flex:none;opacity:.75}.sm:hover{opacity:1;background:var(--surface3)}
+#st{position:absolute;top:6px;right:10px;font:600 10px var(--font);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);opacity:.9}
+</style></head><body><div id="wrap"><div id="st"></div><div id="bubble"></div><div id="host"></div>
+<div id="bar"><button id="mic" title="Parler (⌥ Espace)">🎙️</button><input id="in" placeholder="Demande-moi quelque chose…"><button class="sm" id="open" title="Ouvrir Nova">⤢</button></div></div>
+<script type="module">
+import { api, applyTheme, accentOf, openEvents } from "./core.js";
+import { Assistant } from "./assistant.js";
+import { createAvatar } from "./avatar.js";
+const A = new Assistant(api); window.Nova = { A, toggleVoice: () => (A.voiceOn ? (A.interrupt("raccourci"), A.stopVoice()) : A.startVoice().then(refreshMic)) };
+const host = document.getElementById("host"), bub = document.getElementById("bubble"), st = document.getElementById("st"), mic = document.getElementById("mic"), inp = document.getElementById("in");
+const av = createAvatar(host);
+const s = await api.get("/api/state"); applyTheme(s.settings.theme); av.setTheme(document.documentElement.dataset.theme, accentOf());
+const L = { idle: "", listening: "j'écoute", thinking: "je réfléchis", tool: "outil…", speaking: "", error: "problème" };
+let hideT; const say = (t, cls = "") => { bub.className = "show " + cls; bub.textContent = t.length > 190 ? "…" + t.slice(-190) : t; clearTimeout(hideT); };
+const fade = (ms = 6000) => { clearTimeout(hideT); hideT = setTimeout(() => (bub.className = ""), ms); };
+const refreshMic = () => mic.classList.toggle("on", A.voiceOn);
+A.addEventListener("state", (e) => { av.setState(e.detail.state); st.textContent = L[e.detail.state] || ""; refreshMic(); if (e.detail.state === "idle" || e.detail.state === "listening") fade(); });
+A.addEventListener("level", (e) => av.setLevel(e.detail.level));
+A.addEventListener("user", (e) => say(e.detail.text, "user"));
+A.addEventListener("delta", (e) => say(e.detail.full));
+A.addEventListener("done", () => fade(9000));
+A.addEventListener("error", (e) => say("⚠ " + e.detail.message)); A.addEventListener("failover", (e) => { st.textContent = "bascule → " + e.detail.to; });
+A.addEventListener("engine", (e) => { if (e.detail.engine !== "elevenlabs") st.textContent = "voix de repli"; });
+mic.onclick = () => window.Nova.toggleVoice();
+inp.onkeydown = (e) => { if (e.key === "Enter" && inp.value.trim()) { const t = inp.value.trim(); inp.value = ""; A.send(t, { voice: s.settings.voice_enabled || A.voiceOn }); } if (e.key === "Escape") A.interrupt("touche"); };
+document.getElementById("open").onclick = () => { try { webkit.messageHandlers.nova.postMessage({ cmd: "openMain" }); } catch { window.open("/", "_blank"); } };
+host.addEventListener("dblclick", () => window.Nova.toggleVoice());
+openEvents({ brief: (b) => { say("Nouveau : " + b.title + " est prêt."); fade(8000); if (s.settings.auto_speak_briefs) A.send("Lis-moi ce brief : " + b.text, { voice: true }); } });
+setInterval(async () => { try { const x = await api.get("/api/state"); applyTheme(x.settings.theme); av.setTheme(document.documentElement.dataset.theme, accentOf()); } catch {} }, 15000);
+window.__ready = true;
+</script></body></html>
