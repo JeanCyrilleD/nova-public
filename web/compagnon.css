@@ -1,0 +1,121 @@
+/* Compagnon animé — repris de Spark Local */
+.mascot{--spring:cubic-bezier(.34,1.56,.64,1);--ease:cubic-bezier(.2,.8,.2,1);--amber:#ffb000;--red:#e5392b}
+.mascot{--fur:#FF8A3D;--fur2:#FFF3E4;--dark:#4A2410;--inner:#FFC7A1;--eye:#2A1A12;--tip:#FFF3E4;width:100%;height:100%;overflow:visible;display:block}
+.mascot[data-skin="panda"]{--fur:#F5F7FB;--fur2:#FFFFFF;--dark:#1E222B;--inner:#3A404D;--eye:#FFFFFF;--tip:#1E222B}
+.mascot[data-skin="lion"]{--fur:#F4BC4F;--fur2:#FFEBC0;--dark:#A85A16;--inner:#F7D58E;--eye:#3A2208;--tip:#A85A16}
+.mascot[data-skin="chouette"]{--fur:#8C6FD9;--fur2:#EDE6FF;--dark:#4B3792;--inner:#C9B8FF;--eye:#1B1238;--tip:#4B3792}
+.mascot[data-skin="robot"]{--fur:#B4BFCF;--fur2:#E9EEF6;--dark:#5C6779;--inner:#8FE9FF;--eye:#0AC8FF;--tip:#5C6779}
+.mascot[data-skin="esprit"]{--fur:var(--accent);--fur2:color-mix(in srgb,var(--accent) 22%,#fff);--dark:color-mix(in srgb,var(--accent) 55%,#000);--inner:var(--accent-2,var(--accent));--eye:#1A1014;--tip:#fff}
+.mascot *{transform-box:fill-box;transform-origin:center}
+.m-shadow{fill:#000;opacity:.22} .m-torso,.m-face,.m-ear,.m-tail{fill:var(--fur)} .m-belly,.m-muzzle{fill:var(--fur2)} .m-foot,.m-arm rect{fill:var(--dark)}
+.m-ear-in{fill:var(--inner)} .m-tail-tip{fill:var(--tip)} .m-eye,.m-nose{fill:var(--eye)} .m-glint{fill:#fff} .m-cheek{fill:#FF7A7A;opacity:.38}
+.m-mouth{fill:none;stroke:var(--eye);stroke-width:1.8;stroke-linecap:round}
+.m-mane,.m-patch,.m-antenna,.m-antenna-tip,.m-beak{display:none}
+[data-skin="panda"] .m-patch{display:block;fill:var(--dark)} [data-skin="panda"] .m-ear{fill:var(--dark)} [data-skin="panda"] :is(.m-tail,.m-tail-tip,.m-ear-in){display:none}
+[data-skin="panda"] .m-glint{fill:#0E1014} [data-skin="panda"] :is(.m-nose){fill:#0E1014} [data-skin="panda"] .m-mouth{stroke:#0E1014}
+[data-skin="lion"] .m-mane{display:block;fill:var(--dark)}
+[data-skin="chouette"] .m-beak{display:block;fill:#F5A524} [data-skin="chouette"] :is(.m-nose,.m-mouth,.m-tail,.m-tail-tip,.m-muzzle){display:none} [data-skin="chouette"] .m-patch{display:block;fill:var(--fur2)}
+[data-skin="robot"] :is(.m-ear,.m-ear-in,.m-tail,.m-tail-tip,.m-cheek,.m-nose){display:none} [data-skin="robot"] .m-antenna{display:block;fill:none;stroke:var(--dark);stroke-width:3;stroke-linecap:round}
+[data-skin="robot"] .m-antenna-tip{display:block;fill:var(--inner);filter:drop-shadow(0 0 4px var(--inner))} [data-skin="robot"] .m-eye{filter:drop-shadow(0 0 3px var(--eye))} [data-skin="robot"] .m-mouth{stroke:var(--dark)}
+.m-phones,.m-laptop,.m-loupe,.m-dots,.m-waves,.m-ask,.m-stars{opacity:0;transition:opacity .35s}
+.m-band{fill:none;stroke:#2B2F3A;stroke-width:4.500;stroke-linecap:round} .m-phones rect{fill:var(--accent)} .m-note{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round} .m-note-h{fill:var(--accent)}
+.m-lap-base{fill:#8E99AB} .m-lap-lid{fill:#C9D1DE} .m-screen{fill:#10141C} .m-code{fill:none;stroke:var(--accent);stroke-width:1.700;stroke-linecap:round;stroke-dasharray:3 2.400}
+.m-lens{fill:rgba(140,220,255,.3)} .m-lens-rim{fill:none;stroke:#F5F7FB;stroke-width:4} .m-handle{fill:none;stroke:#8A5A2B;stroke-width:5.500;stroke-linecap:round}
+.m-dots circle{fill:var(--txt,#fff);opacity:.9} .m-waves path{fill:none;stroke:var(--accent);stroke-width:2.600;stroke-linecap:round}
+.m-ask circle:first-child{fill:var(--amber)} .m-ask path{fill:none;stroke:#221500;stroke-width:2.600;stroke-linecap:round} .m-ask-dot{fill:#221500} .m-stars path{fill:#FFD54A}
+/* au repos : il respire, cligne, remue la queue, penche la tête */
+.mascot.react .m-body{animation:mBreath 3.800s ease-in-out infinite;transform-origin:50% 100%}
+.mascot.react .m-head{animation:mTilt 7s ease-in-out infinite;transform-origin:50% 92%}
+.mascot.react .m-eye{animation:mBlink 5.200s infinite} .mascot.react .m-tail{animation:mWag 2.600s ease-in-out infinite;transform-origin:0% 100%}
+.mascot.react .m-ear.l{animation:mEar 6s infinite;transform-origin:70% 100%} .mascot.react .m-arm{transform-origin:50% 8%;transition:transform .4s var(--spring)}
+@keyframes mBreath{50%{transform:scaleY(1.035) scaleX(.985)}} @keyframes mTilt{0%,100%{transform:rotate(0)}30%{transform:rotate(-3deg)}65%{transform:rotate(2.500deg)}}
+@keyframes mBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}} @keyframes mWag{50%{transform:rotate(-13deg)}}
+@keyframes mEar{0%,88%,100%{transform:rotate(0)}92%{transform:rotate(-13deg)}96%{transform:rotate(4deg)}}
+/* il réfléchit */
+body[data-mood="pense"] .mascot.react .m-dots{opacity:1} body[data-mood="pense"] .mascot.react .m-dots circle{animation:mDot 1.400s infinite}
+body[data-mood="pense"] .mascot.react .m-dots circle:nth-child(2){animation-delay:.2s} body[data-mood="pense"] .mascot.react .m-dots circle:nth-child(3){animation-delay:.4s}
+body[data-mood="pense"] .mascot.react .m-eyes{transform:translate(2.500px,-3px)} body[data-mood="pense"] .mascot.react .m-head{animation:mThink 3.200s ease-in-out infinite}
+body[data-mood="pense"] .mascot.react .m-arm.r{transform:rotate(-152deg)}
+@keyframes mDot{0%,100%{transform:scale(.6);opacity:.35}50%{transform:scale(1.15);opacity:1}} @keyframes mThink{0%,100%{transform:rotate(5deg)}50%{transform:rotate(8deg) translateY(-1px)}}
+/* il travaille : portable, casque, mains sur le clavier, tête qui bat la mesure */
+body:is([data-mood="travaille"],[data-mood="ecrit"]) .mascot.react :is(.m-laptop,.m-phones){opacity:1}
+body:is([data-mood="travaille"],[data-mood="ecrit"]) .mascot.react .m-arm.l{animation:mTypeL .2s infinite alternate}
+body:is([data-mood="travaille"],[data-mood="ecrit"]) .mascot.react .m-arm.r{animation:mTypeR .2s .1s infinite alternate}
+body:is([data-mood="travaille"],[data-mood="ecrit"]) .mascot.react .m-head{animation:mBob .46s ease-in-out infinite alternate}
+body:is([data-mood="travaille"],[data-mood="ecrit"]) .mascot.react .m-code{animation:mCode .7s linear infinite}
+body:is([data-mood="travaille"],[data-mood="ecrit"]) .mascot.react :is(.m-note,.m-note-h){animation:mNote 1.500s ease-in-out infinite}
+body:is([data-mood="travaille"],[data-mood="ecrit"]) .mascot.react .m-screen{animation:mScreen 1.200s infinite alternate}
+@keyframes mTypeL{from{transform:rotate(-24deg) translateY(3px)}to{transform:rotate(-30deg) translateY(7px)}} @keyframes mTypeR{from{transform:rotate(24deg) translateY(3px)}to{transform:rotate(30deg) translateY(7px)}}
+@keyframes mBob{from{transform:rotate(-2.500deg) translateY(0)}to{transform:rotate(2.500deg) translateY(2px)}} @keyframes mCode{to{stroke-dashoffset:-10.800}}
+@keyframes mNote{0%{transform:translate(0,4px);opacity:0}30%{opacity:1}100%{transform:translate(5px,-9px) rotate(12deg);opacity:0}} @keyframes mScreen{to{fill:#182233}}
+/* il cherche : loupe qui balaie, regard qui suit */
+body[data-mood="cherche"] .mascot.react .m-loupe{opacity:1;animation:mScan 1.800s ease-in-out infinite} body[data-mood="cherche"] .mascot.react .m-eyes{animation:mLook 1.800s ease-in-out infinite}
+body[data-mood="cherche"] .mascot.react .m-arm.r{transform:rotate(-62deg)} body[data-mood="cherche"] .mascot.react .m-head{animation:mPeek 1.800s ease-in-out infinite}
+@keyframes mScan{0%,100%{transform:translate(4px,2px) rotate(8deg)}50%{transform:translate(-26px,-8px) rotate(-10deg)}} @keyframes mLook{0%,100%{transform:translateX(3px)}50%{transform:translateX(-3px)}}
+@keyframes mPeek{0%,100%{transform:rotate(4deg)}50%{transform:rotate(-4deg) translateY(1px)}}
+/* il écoute, il parle */
+body[data-mood="ecoute"] .mascot.react :is(.m-phones,.m-waves){opacity:1} body[data-mood="ecoute"] .mascot.react .m-ear{animation:mPerk .45s ease-in-out infinite alternate}
+body[data-mood="ecoute"] .mascot.react .m-waves path{animation:mWave 1s ease-in-out infinite reverse} body[data-mood="ecoute"] .mascot.react .m-head{animation:mPeek 2.400s ease-in-out infinite}
+body[data-mood="parle"] .mascot.react .m-waves{opacity:1} body[data-mood="parle"] .mascot.react .m-waves path{animation:mWave .8s ease-in-out infinite}
+body[data-mood="parle"] .mascot.react .m-waves path:nth-child(2){animation-delay:.2s} body[data-mood="parle"] .mascot.react .m-mouth{animation:mTalk .24s ease-in-out infinite alternate;fill:var(--eye)}
+@keyframes mPerk{to{transform:rotate(-7deg) scaleY(1.1)}} @keyframes mWave{0%{opacity:0;transform:translateX(-5px) scale(.8)}50%{opacity:1}100%{opacity:0;transform:translateX(5px) scale(1.1)}}
+@keyframes mTalk{from{transform:scaleY(.5)}to{transform:scaleY(1.900) scaleX(.85)}}
+/* il attend ton accord, il fête, il bute */
+body[data-mood="attente"] .mascot.react .m-ask{opacity:1;animation:mAsk .8s var(--spring) infinite alternate} body[data-mood="attente"] .mascot.react .m-arm.r{transform:rotate(-158deg)}
+body[data-mood="attente"] .mascot.react .m-eye{animation:none;transform:scale(1.180)}
+@keyframes mAsk{from{transform:translateY(2px) scale(.94)}to{transform:translateY(-4px) scale(1.060)}}
+body[data-mood="fete"] .mascot.react .m-all{animation:mJump .5s var(--ease) 3} body[data-mood="fete"] .mascot.react .m-stars{opacity:1} body[data-mood="fete"] .mascot.react .m-stars path{animation:mStar .5s ease-in-out infinite alternate}
+body[data-mood="fete"] .mascot.react .m-arm.l{transform:rotate(150deg)} body[data-mood="fete"] .mascot.react .m-arm.r{transform:rotate(-150deg)}
+@keyframes mJump{50%{transform:translateY(-12px)}} @keyframes mStar{from{transform:scale(.5) rotate(0);opacity:.4}to{transform:scale(1.250) rotate(40deg);opacity:1}}
+body[data-mood="erreur"] .mascot.react .m-head{animation:none;transform:rotate(9deg) translateY(3px)} body[data-mood="erreur"] .mascot.react .m-eye{animation:none;transform:scaleY(.22)}
+body[data-mood="erreur"] .mascot.react .m-mouth{transform:scaleY(-1)} body[data-mood="erreur"] .mascot.react .m-ear{animation:none;transform:rotate(16deg)}
+html[data-motion="aucune"] .mascot *{animation:none!important}
+/* où il vit */
+.m-bang,.m-letter,.m-heart,.m-drop{opacity:0;transition:opacity .3s}
+.m-bang circle:first-child{fill:var(--red)} .m-bang path{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round} .m-bang-dot{fill:#fff}
+.m-letter rect{fill:#F5F7FB} .m-letter path{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round} .m-heart{fill:#FF5E7E} .m-drop{fill:#6CC6FF}
+body[data-mood="repos"] .mascot.react .m-eyes{transform:translate(var(--ex,0px),var(--ey,0px));transition:transform .12s linear}
+body[data-mood="alerte"] .mascot.react .m-bang{opacity:1;animation:mAsk .34s var(--spring) infinite alternate} body[data-mood="alerte"] .mascot.react .m-ear{animation:mPerk .22s ease-in-out infinite alternate}
+body[data-mood="alerte"] .mascot.react .m-all{animation:mJump .42s var(--ease) infinite} body[data-mood="alerte"] .mascot.react .m-eye{animation:none;transform:scale(1.250)}
+body[data-mood="alerte"] .companion{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 0 34px -10px var(--red)} body[data-mood="alerte"] .pulse-dot{background:var(--red)}
+body[data-mood="courrier"] .mascot.react .m-letter{opacity:1;animation:mNoteIn 1.100s var(--spring) infinite alternate} body[data-mood="courrier"] .mascot.react .m-arm.r{transform:rotate(-150deg)}
+body[data-mood="courrier"] .mascot.react .m-ear{animation:mPerk .4s ease-in-out infinite alternate} @keyframes mNoteIn{from{transform:translateY(3px) rotate(-6deg)}to{transform:translateY(-4px) rotate(6deg)}}
+body[data-mood="content"] .mascot.react .m-heart{opacity:1;animation:mHeart .7s var(--spring) infinite alternate} body[data-mood="content"] .mascot.react .m-eye{animation:none;transform:scaleY(.38)}
+body[data-mood="content"] .mascot.react .m-tail{animation-duration:.4s} body[data-mood="content"] .mascot.react .m-cheek{opacity:.8} body[data-mood="content"] .mascot.react .m-all{animation:mJump .5s var(--ease) 2}
+@keyframes mHeart{from{transform:scale(.7) translateY(3px)}to{transform:scale(1.200) translateY(-4px)}}
+body[data-mood="desole"] .mascot.react .m-drop{opacity:1;animation:mDrop 1.100s ease-in infinite} body[data-mood="desole"] .mascot.react .m-ear{animation:none;transform:rotate(18deg)}
+body[data-mood="desole"] .mascot.react .m-head{animation:none;transform:rotate(-5deg) translateY(3px)} body[data-mood="desole"] .mascot.react .m-mouth{transform:scaleY(-1)} @keyframes mDrop{from{transform:translateY(-3px);opacity:1}to{transform:translateY(10px);opacity:0}}
+body[data-tic="salut"][data-mood="repos"] .mascot.react .m-arm.r{animation:mWaveArm .34s ease-in-out 4 alternate} @keyframes mWaveArm{from{transform:rotate(-150deg)}to{transform:rotate(-118deg)}}
+body[data-tic="saut"][data-mood="repos"] .mascot.react .m-all{animation:mJump .5s var(--ease) 2}
+
+.avcard .avmascot{width:76px;height:76px;margin:0 auto 6px}.avcard .avmascot svg{width:100%;height:100%;overflow:visible}
+
+/* Panda Spark : états (repris de Spark Local) */
+.masc-panda{overflow:visible}
+.masc-wrap[data-etat="repos"] .masc { animation: m-resp 4.2s ease-in-out infinite; }
+.masc-wrap[data-etat="reflexion"] .pupils { animation: m-regard 1.6s ease-in-out 6; }
+.masc-wrap[data-etat="travail"] .masc { animation: m-rebond .9s ease-in-out 8; }
+.masc-wrap[data-etat="succes"] .masc { animation: m-saut .6s ease-out 1; }
+.masc-wrap[data-etat="erreur"] .masc { animation: m-contrit 2.4s ease-in-out 3; }
+.masc-wrap[data-etat="dors"] .pupils { transform: scaleY(.08); transform-origin: center; transform-box: fill-box; }
+.masc-wrap[data-etat="dors"] .masc { animation: m-resp 5.5s ease-in-out infinite; }
+/* Compagnon : le panda vit quand il parle, écoute, réfléchit (échelle/rotation seules : pas de translation en boucle). */
+.masc-wrap[data-etat="parle"] .bouche { animation: m-parle .45s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.masc-wrap[data-etat="parle"] .masc { animation: m-resp 1.8s ease-in-out infinite; }
+.masc-wrap[data-etat="ecoute"] .pupils { transform: translateY(-2.5px); }
+.masc-wrap[data-etat="ecoute"] .masc { animation: m-ecoute 1.4s ease-in-out infinite; }
+.masc-wrap[data-etat="pense"] .masc { animation: m-pense 3.2s ease-in-out infinite; }
+.masc-wrap[data-etat="pense"] .pupils { animation: m-cligne 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes m-resp { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+@keyframes m-regard { 0%,100% { transform: translateX(0); } 30% { transform: translateX(-3px); } 70% { transform: translateX(3px); } }
+@keyframes m-rebond { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes m-saut { 0% { transform: translateY(0); } 40% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+@keyframes m-contrit { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-4deg) translateY(2px); } }
+@keyframes m-danse { 0%,100% { transform: rotate(0); } 25% { transform: rotate(5deg); } 75% { transform: rotate(-5deg); } }
+@keyframes m-parle { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(.25); } }
+@keyframes m-ecoute { 0%,100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+@keyframes m-pense { 0%,100% { transform: rotate(0); } 30% { transform: rotate(2.5deg); } 70% { transform: rotate(-2.5deg); } }
+@keyframes m-cligne { 0%,88%,100% { transform: scaleY(1); } 93% { transform: scaleY(.1); } }
+.masc-panda .comp-body-group{animation:m-flot 5s ease-in-out infinite}@keyframes m-flot{50%{transform:translateY(-3px)}}
+.masc-panda .comp-eye{animation:m-cligne 5.5s infinite;transform-box:fill-box;transform-origin:center}
+.masc-panda .comp-arm-r{transform-box:fill-box;transform-origin:20% 10%}[data-etat="repos"] .masc-panda .comp-arm-r{animation:m-bras 6s ease-in-out infinite}@keyframes m-bras{0%,90%,100%{transform:rotate(0)}94%{transform:rotate(-14deg)}97%{transform:rotate(4deg)}}
